@@ -1,5 +1,5 @@
 import css from './ImageGalleryItem.module.css';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ webformatURL, tags, onOpenModal }) => {
   return (
@@ -14,7 +14,7 @@ const ImageGalleryItem = ({ webformatURL, tags, onOpenModal }) => {
   );
 };
 
-ImageGalleryItem.propTypes = {  
+ImageGalleryItem.propTypes = {
   webformatURL: PropTypes.string.isRequired,
   tags: PropTypes.string.isRequired,
   onOpenModal: PropTypes.func.isRequired,

@@ -2,24 +2,24 @@ import { Component } from 'react';
 import { ImSearch } from 'react-icons/im';
 import css from './Searchbar.module.css';
 import Notiflix from 'notiflix';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
-  state = { value: '' };
+  state = { searchQuery: '' };
 
-  handleChange = ({ target: { value } }) => {
-    this.setState({ value });
+  handleChange = ({ target }) => {
+    this.setState({ searchQuery: target.value });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    if (this.state.value.trim() === '') {
+  handleSubmit = event => {
+    event.preventDefault();
+    if (this.state.searchQuery.trim() === '') {
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
     }
-    this.props.onSubmit(this.state.value.trim());
-    this.setState({ value: '' });
+    this.props.onSubmit(this.state.searchQuery);
+    this.setState({ searchQuery: '' });
   };
 
   render() {
@@ -39,7 +39,7 @@ class SearchBar extends Component {
             autoFocus
             placeholder="Search images and photos"
             onChange={this.handleChange}
-            value={this.state.value}
+            value={this.state.searchQuery}
           />
         </form>
       </header>
@@ -49,6 +49,6 @@ class SearchBar extends Component {
 
 SearchBar.propTypes = {
   handleSubmit: PropTypes.func,
-}
+};
 
 export default SearchBar;
