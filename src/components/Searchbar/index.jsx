@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { ImSearch } from 'react-icons/im';
 import css from './Searchbar.module.css';
+import Notiflix from 'notiflix';
 import PropTypes from 'prop-types'
 
 class SearchBar extends Component {
@@ -12,6 +13,11 @@ class SearchBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    if (this.state.value.trim() === '') {
+      Notiflix.Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
+    }
     this.props.onSubmit(this.state.value.trim());
     this.setState({ value: '' });
   };
