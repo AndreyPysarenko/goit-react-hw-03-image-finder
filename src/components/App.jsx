@@ -4,7 +4,7 @@ import SearchBar from './Searchbar';
 import Loader from './Loader';
 import Button from './Button';
 import { ImageGallery } from './ImageGallery';
-import { getImageBySearch } from './Api/api-search';
+import { getImageBySearch, PER_PAGE } from './Api/api-search';
 import css from './App.module.css';
 
 export class App extends Component {
@@ -33,7 +33,7 @@ export class App extends Component {
         const data = await getImageBySearch(searchQuery, page);
 
         const images = data.hits;
-        const totalPages = Math.ceil(data.totalHits / 12);
+        const totalPages = Math.ceil(data.totalHits / PER_PAGE);
         const hasMoreImages = page < totalPages;
 
         if (prevState.searchQuery !== searchQuery) {
